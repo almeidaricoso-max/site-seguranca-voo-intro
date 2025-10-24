@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
 
 :root {
-    --primary-color: #ffc107;      /* Amarelo vibrante para destaque (dos coletes) */
-    --background-dark: #0a0f18;   /* Azul muito escuro, quase preto (do hangar) */
-    --background-light: #1a202c;  /* Azul-cinza escuro para seções */
-    --text-color-light: #e0e0e0;  /* Cinza claro para texto principal */
-    --text-color-dark: #ffffff;   /* Branco puro para títulos */
+    --primary-color: #ffc107;
+    --background-dark: #0a0f18;
+    --background-light: #1a202c;
+    --text-color-light: #e0e0e0;
+    --text-color-dark: #ffffff;
     --header-height: 70px;
 }
 
@@ -17,6 +17,7 @@ body {
     background-color: var(--background-dark);
     color: var(--text-color-light);
 }
+
 /* --- Estilo da Tela de Abertura (Splash Screen) --- */
 #splash-screen {
     position: fixed; /* ESSENCIAL: Fixa na tela */
@@ -46,21 +47,18 @@ body {
 /* --- Fim do código do Splash Screen --- */
 
 
-header { /* O header começa aqui (agora em uma linha mais abaixo) */
-    background-color: rgba(10, 15, 24, 0.85);
-    backdrop-filter: blur(10px);
-    /* ... resto do seu código ... */
 header {
     background-color: rgba(10, 15, 24, 0.85);
     backdrop-filter: blur(10px);
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
-    height: var(--header-height);
+    z-index: 1000; /* Abaixo do splash screen */
+    min-height: var(--header-height);
     display: flex;
     align-items: center;
     border-bottom: 1px solid #333;
+    padding: 10px 0;
 }
 
 nav {
@@ -102,7 +100,6 @@ section h2 {
 }
 section h3 { font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 1rem; color: var(--primary-color); }
 
-/* --- A NOVA SEÇÃO INICIAL --- */
 #hero-banner {
     display: flex;
     align-items: center;
@@ -111,12 +108,10 @@ section h3 { font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom:
     padding: 2rem;
     text-align: center;
     color: var(--text-color-dark);
-    
-    /* A MÁGICA ACONTECE AQUI */
-   background-image: linear-gradient(rgba(10, 15, 24, 0.6), rgba(10, 15, 24, 0.8)), url('AVIÃO NO HANGAR.jpg');
+    background-image: linear-gradient(rgba(10, 15, 24, 0.6), rgba(10, 15, 24, 0.8)), url('hangar-background.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Efeito Parallax */
+    background-attachment: fixed;
 }
 
 .hero-content h3 {
@@ -146,7 +141,6 @@ section h3 { font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom:
 }
 .btn:hover { transform: translateY(-3px); }
 
-/* Estilo das outras seções */
 section:not(#hero-banner) {
     background-color: var(--background-light);
     border-top: 1px solid #333;
@@ -154,154 +148,62 @@ section:not(#hero-banner) {
 }
 .pilar { text-align: center; padding: 1.5rem; }
 .pilares-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-/* --- Estilo para o fundo da seção de Manutenção --- */
-#manutencao {
-    position: relative; /* Necessário para o overlay */
-    z-index: 1;
-    color: var(--text-color-dark); /* Deixa o texto branco para contrastar */
-}
+#manutencao ul, #fatores-humanos ol { margin-left: 20px; line-height: 2; }
 
+/* --- Fundos Sutis --- */
+#manutencao, #fatores-humanos, #emca-final-section {
+    position: relative; z-index: 1; color: var(--text-color-dark);
+}
+#manutencao::before, #fatores-humanos::before, #emca-final-section::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-position: center center; background-repeat: no-repeat;
+    background-attachment: fixed; z-index: -1; border-radius: 8px; /* Opcional */
+}
 #manutencao::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-   background-image: linear-gradient(rgba(10, 15, 24, 0.65), rgba(10, 15, 24, 0.8)), url('rotor-background.jpeg');
+    background-image: linear-gradient(rgba(10, 15, 24, 0.65), rgba(10, 15, 24, 0.8)), url('rotor-background.jpeg');
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Efeito Parallax */
-    z-index: -1;
-    border-radius: 8px; /* Opcional: para bordas arredondadas */
 }
-/* --- Estilo para o fundo da seção de Fatores Humanos --- */
-#fatores-humanos {
-    position: relative; /* Necessário para o overlay */
-    z-index: 1;
-    color: var(--text-color-dark); /* Deixa o texto branco para contrastar */
+#fatores-humanos::before {
+    background-image: linear-gradient(rgba(10, 15, 24, 0.65), rgba(10, 15, 24, 0.8)), url('nova-equipe-emca.jpeg');
+    background-size: cover; background-position: 80% center;
+}
+#emca-final-section { min-height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem 1.5rem; }
+#emca-final-section::before {
+    background-image: linear-gradient(rgba(10, 15, 24, 0.7), rgba(10, 15, 24, 0.85)), url('logo-emca-completo.jpg');
+    background-size: contain; opacity: 0.8;
 }
 
-#fatores-humanos::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
- background-image: linear-gradient(rgba(10, 15, 24, 0.65), rgba(10, 15, 24, 0.8)), url('nova-equipe-emca.jpeg');
-    background-size: cover;
-   background-position: 80% center; /* Ajusta o foco para a direita, mostrando mais o homem de costas */
-    background-attachment: fixed; /* Efeito Parallax */
-    z-index: -1;
-    border-radius: 8px; /* Opcional: para bordas arredondadas */
+.impact-phrase {
+    margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 193, 7, 0.3);
+    font-family: 'Roboto', sans-serif; font-size: 1.8rem; font-weight: 700; font-style: italic;
+    color: var(--primary-color); max-width: 600px; line-height: 1.4;
 }
+
 /* ======================================================= */
 /* --- REGRAS PARA CELULAR (DESIGN RESPONSIVO) --- */
 /* ======================================================= */
 @media (max-width: 768px) {
-
-    /* --- Navegação Aprimorada --- */
-    nav {
-        padding: 0 1rem;
-    }
-
-    nav .logo {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-    }
-    
-    nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    nav ul li {
-        margin-left: 0;
-    }
-
-    header {
-        height: auto;
-        padding: 1rem 0;
-    }
-    
-    main {
-        padding-top: 130px;
-    }
-
-    /* --- Tipografia e Conteúdo --- */
-    .hero-content h3 {
-        font-size: 2.8rem;
-        line-height: 1.2;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
-    section {
-        padding: 3rem 1.5rem;
-    }
-
-    section h2 {
-        font-size: 2rem;
-    }
-
-    .pilares-container {
-        grid-template-columns: 1fr;
-    }
-
-    /* --- Efeitos Visuais --- */
-    /* Remove o efeito parallax em telemóveis */
-    #hero-banner, #manutencao::before, #fatores-humanos::before {
-        background-attachment: scroll;
-    }
-
-    /* NOVO CÓDIGO AQUI: Ajusta as imagens de fundo para serem totalmente visíveis */
-    #manutencao::before,
-    #fatores-humanos::before {
-        background-size: contain; /* Garante que a imagem inteira seja visível */
-        background-repeat: no-repeat; /* Evita que a imagem se repita */
-    }
-
-    /* --- Rodapé --- */
-    footer {
-        font-size: 0.9rem;
-    }
+    nav { flex-direction: column; gap: 10px; padding: 1rem; align-items: center;}
+    nav .logo { font-size: 1.5rem; margin-bottom: 0; }
+    nav ul { justify-content: center; flex-wrap: wrap; gap: 10px 15px; padding-top: 10px; }
+    nav ul li { margin-left: 0; }
+    header { height: auto; padding: 0.5rem 0; }
+    html { scroll-padding-top: 120px; }
+    main { padding-top: 120px; }
+    .hero-content h3 { font-size: 2.5rem; line-height: 1.1; }
+    .hero-content p { font-size: 1rem; }
+    .btn { padding: 12px 24px; font-size: 0.9rem; }
+    section { padding: 3rem 1rem; }
+    section h2 { font-size: 2rem; }
+    .pilares-container { grid-template-columns: 1fr; }
+    #manutencao ul, #fatores-humanos ol { padding-left: 15px; }
+    #hero-banner, #manutencao::before, #fatores-humanos::before, #emca-final-section::before { background-attachment: scroll; }
+    #manutencao::before, #fatores-humanos::before, #emca-final-section::before { background-size: contain; background-repeat: no-repeat; }
+    #manutencao::before { background-image: linear-gradient(rgba(10, 15, 24, 0.5), rgba(10, 15, 24, 0.7)), url('rotor-background.jpeg'); }
+    #fatores-humanos::before { background-image: linear-gradient(rgba(10, 15, 24, 0.5), rgba(10, 15, 24, 0.7)), url('nova-equipe-emca.jpeg'); }
+    #emca-final-section::before { background-image: linear-gradient(rgba(10, 15, 24, 0.7), rgba(10, 15, 24, 0.85)), url('logo-emca-completo.jpg'); opacity: 1; }
+    .impact-phrase { font-size: 1.5rem; }
+    footer { font-size: 0.85rem; }
 }
-    /* --- Efeitos Visuais --- */
-    /* Remove o efeito parallax em celulares, que pode causar lentidão */
-    #hero-banner, #manutencao::before, #fatores-humanos::before {
-        background-attachment: scroll;
-        /* Ajusta as imagens de fundo para serem totalmente visíveis no telemóvel */
-    #manutencao::before,
-    #fatores-humanos::before {
-        background-size: contain; /* Garante que a imagem inteira seja visível */
-        background-repeat: no-repeat; /* Evita que a imagem se repita no espaço vazio */
-    }
-    }
 
-    /* --- Rodapé --- */
-    footer {
-        font-size: 0.9rem; /* Fonte do rodapé mais sutil */
-    }
-
-
-
-/* --- Estilo para a frase de impacto --- */
-.impact-phrase {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 193, 7, 0.3);
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    font-style: italic;
-    color: var(--primary-color);
-    max-width: 600px;
-    line-height: 1.4;
-}
-    
-}
 footer { text-align: center; padding: 2.5rem 0; background: var(--background-dark); color: #888; }
