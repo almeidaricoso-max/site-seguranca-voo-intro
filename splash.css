@@ -1,0 +1,28 @@
+/* --- Estilo da Tela de Abertura (Splash Screen) --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Você pode precisar definir a cor de fundo aqui se este CSS for carregado antes do principal,
+       ou garantir que a variável --background-dark esteja disponível */
+    background-color: #0a0f18; /* Cor de fundo escura como fallback */
+    z-index: 9999; /* Garante que fique por cima de tudo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1; /* Começa visível */
+    transition: opacity 0.8s ease-out; /* Efeito suave de desaparecimento */
+    pointer-events: none; /* Permite cliques "através" após desaparecer */
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+}
+
+#intro-video {
+    width: 100%;
+    max-width: 450px; /* Ajuste este valor para o tamanho desejado do vídeo/logo */
+    height: auto;
+}
