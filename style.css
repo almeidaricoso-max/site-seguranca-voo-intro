@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --primary-color: #ffc107;      /* Amarelo vibrante para destaque (dos coletes) */
+    --background-dark: #0a0f18;   /* Azul muito escuro, quase preto (do hangar) */
+    --background-light: #1a202c;  /* Azul-cinza escuro para seções */
+    --text-color-light: #e0e0e0;  /* Cinza claro para texto principal */
+    --text-color-dark: #ffffff;   /* Branco puro para títulos */
+    --header-height: 70px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7;
+    background-color: var(--background-dark);
+    color: var(--text-color-light);
+}
+
+header {
+    background-color: rgba(10, 15, 24, 0.85);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding: 0 2rem;
+}
+
+nav .logo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav ul { list-style: none; display: flex; }
+nav ul li { margin-left: 25px; }
+nav a { color: var(--text-color-light); text-decoration: none; transition: color 0.3s ease; }
+nav a:hover { color: var(--primary-color); }
+
+main { padding-top: var(--header-height); }
+section { padding: 5rem 2rem; max-width: 1100px; margin: auto; }
+section h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    color: var(--text-color-dark);
+    font-size: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+section h3 { font-family: 'Roboto', sans-serif; font-weight: 700; margin-bottom: 1rem; color: var(--primary-color); }
+
+/* --- A NOVA SEÇÃO INICIAL --- */
+#hero-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-color-dark);
+    
+    /* A MÁGICA ACONTECE AQUI */
+   background-image: linear-gradient(rgba(10, 15, 24, 0.6), rgba(10, 15, 24, 0.8)), url('AVIÃO NO HANGAR.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efeito Parallax */
+}
+
+.hero-content h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    margin: 1rem auto 2.5rem;
+    max-width: 600px;
+    color: var(--text-color-light);
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: #000;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    text-transform: uppercase;
+}
+.btn:hover { transform: translateY(-3px); }
+
+/* Estilo das outras seções */
+section:not(#hero-banner) {
+    background-color: var(--background-light);
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.pilar { text-align: center; padding: 1.5rem; }
+.pilares-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+/* --- Estilo para o fundo da seção de Manutenção --- */
+#manutencao {
+    position: relative; /* Necessário para o overlay */
+    z-index: 1;
+    color: var(--text-color-dark); /* Deixa o texto branco para contrastar */
+}
+
+#manutencao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   background-image: linear-gradient(rgba(10, 15, 24, 0.65), rgba(10, 15, 24, 0.8)), url('rotor-background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efeito Parallax */
+    z-index: -1;
+    border-radius: 8px; /* Opcional: para bordas arredondadas */
+}
+/* --- Estilo para o fundo da seção de Fatores Humanos --- */
+#fatores-humanos {
+    position: relative; /* Necessário para o overlay */
+    z-index: 1;
+    color: var(--text-color-dark); /* Deixa o texto branco para contrastar */
+}
+
+#fatores-humanos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+ background-image: linear-gradient(rgba(10, 15, 24, 0.65), rgba(10, 15, 24, 0.8)), url('nova-equipe-emca.jpeg');
+    background-size: cover;
+   background-position: 80% center; /* Ajusta o foco para a direita, mostrando mais o homem de costas */
+    background-attachment: fixed; /* Efeito Parallax */
+    z-index: -1;
+    border-radius: 8px; /* Opcional: para bordas arredondadas */
+}
+/* ======================================================= */
+/* --- REGRAS PARA CELULAR (DESIGN RESPONSIVO) --- */
+/* ======================================================= */
+@media (max-width: 768px) {
+
+    /* --- Navegação Aprimorada --- */
+    nav {
+        padding: 0 1rem;
+    }
+
+    nav .logo {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+    }
+
+    header {
+        height: auto;
+        padding: 1rem 0;
+    }
+    
+    main {
+        padding-top: 130px;
+    }
+
+    /* --- Tipografia e Conteúdo --- */
+    .hero-content h3 {
+        font-size: 2.8rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    section {
+        padding: 3rem 1.5rem;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+
+    .pilares-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- Efeitos Visuais --- */
+    /* Remove o efeito parallax em telemóveis */
+    #hero-banner, #manutencao::before, #fatores-humanos::before {
+        background-attachment: scroll;
+    }
+
+    /* NOVO CÓDIGO AQUI: Ajusta as imagens de fundo para serem totalmente visíveis */
+    #manutencao::before,
+    #fatores-humanos::before {
+        background-size: contain; /* Garante que a imagem inteira seja visível */
+        background-repeat: no-repeat; /* Evita que a imagem se repita */
+    }
+
+    /* --- Rodapé --- */
+    footer {
+        font-size: 0.9rem;
+    }
+}
+    /* --- Efeitos Visuais --- */
+    /* Remove o efeito parallax em celulares, que pode causar lentidão */
+    #hero-banner, #manutencao::before, #fatores-humanos::before {
+        background-attachment: scroll;
+        /* Ajusta as imagens de fundo para serem totalmente visíveis no telemóvel */
+    #manutencao::before,
+    #fatores-humanos::before {
+        background-size: contain; /* Garante que a imagem inteira seja visível */
+        background-repeat: no-repeat; /* Evita que a imagem se repita no espaço vazio */
+    }
+    }
+
+    /* --- Rodapé --- */
+    footer {
+        font-size: 0.9rem; /* Fonte do rodapé mais sutil */
+    }
+
+
+
+/* --- Estilo para a frase de impacto --- */
+.impact-phrase {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 193, 7, 0.3);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--primary-color);
+    max-width: 600px;
+    line-height: 1.4;
+}
+    
+}
+footer { text-align: center; padding: 2.5rem 0; background: var(--background-dark); color: #888; }
